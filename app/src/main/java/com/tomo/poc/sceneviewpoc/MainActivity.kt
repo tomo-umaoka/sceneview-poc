@@ -28,7 +28,6 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.doOnAttach
-import androidx.fragment.app.Fragment
 import io.github.sceneview.ar.scene.PlaneRenderer
 import io.github.sceneview.node.Node
 
@@ -235,14 +234,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onResume() {
         super.onResume()
         sceneView.onSessionResumed
-    }
-}
-
-fun Activity.setKeepScreenOn(keepScreenOn: Boolean = true) {
-    if (keepScreenOn) {
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-    } else {
-        window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 }
 
