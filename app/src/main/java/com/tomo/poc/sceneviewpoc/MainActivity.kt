@@ -126,14 +126,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                                     }
 
                                 } else if (measurementAnchorNode == null) {
-                                    // Second tap must be on vertical plane
-                                    if (trackable.type == Plane.Type.VERTICAL) {
-                                        addMeasurementAnchorNode(hit.createAnchor())
-                                        errorMessage = null
-                                    } else {
-                                        errorMessage =
-                                            "Please select a vertical surface (wall) for measurement"
-                                    }
+                                    addMeasurementAnchorNode(
+                                        hit.createAnchor(),
+                                        trackable.type == Plane.Type.HORIZONTAL_UPWARD_FACING ||
+                                                trackable.type == Plane.Type.HORIZONTAL_DOWNWARD_FACING
+                                    )
                                 } else {
                                     // Reset on third tap
                                     resetMeasurement()
@@ -163,12 +160,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         )
     }
 
-    private fun addMeasurementAnchorNode(anchor: Anchor) {
+    private fun addMeasurementAnchorNode(anchor: Anchor, isHorizontal: Boolean) {
         sceneView.addChildNode(
             AnchorNode(sceneView.engine, anchor).apply {
                 lifecycleScope.launch {
                     isLoading = true
-                    addChildNode(createMarkerNode(Color.Red, false))
+                    addChildNode(createMarkerNode(Color.Red, isHorizontal))
                     isLoading = false
                     measurementAnchorNode = this@apply
                     calculateHeight()
