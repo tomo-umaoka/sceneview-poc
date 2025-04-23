@@ -249,22 +249,6 @@ fun Activity.setKeepScreenOn(keepScreenOn: Boolean = true) {
     }
 }
 
-/**
- * Sets the Android FitsSystemWindows and WindowInsetsController properties.
- */
-fun Fragment.setFullScreen(
-    fullScreen: Boolean = true,
-    hideSystemBars: Boolean = true,
-    fitsSystemWindows: Boolean = true
-) {
-    requireActivity().setFullScreen(
-        this.requireView(),
-        fullScreen,
-        hideSystemBars,
-        fitsSystemWindows
-    )
-}
-
 fun Activity.setFullScreen(
     rootView: View,
     fullScreen: Boolean = true,
