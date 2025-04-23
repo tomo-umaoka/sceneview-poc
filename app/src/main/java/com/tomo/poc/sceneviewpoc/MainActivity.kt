@@ -220,7 +220,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 ?: if (baseAnchorNode == null) {
             "Tap on the floor to set base point"
         } else if (measurementAnchorNode == null) {
-            "Now tap on a wall to measure height"
+            "Now tap on a higher floor or wall to measure height"
         } else {
             null
         }
